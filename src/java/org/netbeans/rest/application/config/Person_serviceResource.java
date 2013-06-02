@@ -1,7 +1,7 @@
 package org.netbeans.rest.application.config;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import javax.sound.midi.Track;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Consumes;
@@ -10,8 +10,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * REST Web Service
@@ -24,6 +22,8 @@ public class Person_serviceResource {
     @Context
     private UriInfo context;
     public ArrayList osoby = new ArrayList<Osoba>();
+    private final String schemeName = "NLIGHT";
+    private final String dbName = "osoba";
 
     public Person_serviceResource() {
         osoby.add(new Osoba("123", "Paweł", "Parafiniuk", "12 maja 2343", true, "Towarowa 1"));
@@ -32,13 +32,21 @@ public class Person_serviceResource {
         osoby.add(new Osoba("333", "Misiek", "Misiecki", "21 maja 2343", true, "Lodowa 13"));
     }
 
-    @GET
+    @POST
     @Path("dodaj")
-    @Consumes("application/json")
+    //@Consumes("application/json")
+    @Consumes({"application/xml", "application/json"})
+    //@Consumes("application/octet-stream")
     @Produces("text/plain")
     public String dodaj(Osoba os) {
+        //public String dodaj() {
+        System.out.println("1");
         //os = new 
-        osoby.add(os);
+        //osoby.add(os);
+
+        DataConnection dc = new DataConnection(schemeName, dbName);
+        dc.insert("osoba", "'222', 'Paweł', 'Parafiniuk', '" + new Date(1990, 5, 20) + "','M','Towarowa 13 m. 56'");
+        dc.close();
         String msg = "Dodalem osobe";
         return msg;
     }

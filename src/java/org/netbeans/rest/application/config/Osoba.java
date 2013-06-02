@@ -1,8 +1,11 @@
 package org.netbeans.rest.application.config;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Osoba {
+@XmlRootElement
+public class Osoba implements Serializable {
 
     public Osoba() {
     }
