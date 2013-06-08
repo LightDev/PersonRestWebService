@@ -29,7 +29,7 @@ public class Person_serviceResource {
         osoby.add(new Osoba("123", "Paweł", "Parafiniuk", "12 maja 2343", true, "Towarowa 1"));
         osoby.add(new Osoba("111", "Mehdi", "Blablabla", "12 maja 2343", true, "Storczykowa 21"));
         osoby.add(new Osoba("222", "Anna", "Rudecka", "19 wrze 2343", false, "Konwaliowa 1"));
-        osoby.add(new Osoba("333", "Misiek", "Misiecki", "21 maja 2343", true, "Lodowa 13"));
+        osoby.add(new Osoba("444", "Misiek", "Misiecki", "21 maja 2343", true, "Lodowa 13"));
     }
 
     @POST
@@ -40,10 +40,6 @@ public class Person_serviceResource {
     @Produces("text/plain")
     public String dodaj(Osoba os) {
         //public String dodaj() {
-        System.out.println("1");
-        //os = new 
-        //osoby.add(os);
-
         DataConnection dc = new DataConnection(schemeName, dbName);
         dc.insert("osoba", "'222', 'Paweł', 'Parafiniuk', '" + new Date(1990, 5, 20) + "','M','Towarowa 13 m. 56'");
         dc.close();
@@ -137,15 +133,4 @@ public class Person_serviceResource {
         //Response.ok
         return s = pokaz1();
     }
-//    @GET
-//    @Produces("application/json")
-//    public Osoba getXml() {
-//        Osoba p = new Osoba("234", "Paweł", "Parafiniuk", "asda", true, "Towarowa");
-//        return p;
-//    }
-//
-//    @PUT
-//    @Consumes("application/json")
-//    public void putJson(String content) {
-//    }
 }
